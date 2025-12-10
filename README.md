@@ -1,110 +1,90 @@
-# Préparation Python avant Django — Planning intensif  
-**Du mardi 10 décembre au samedi 14 décembre 2025**
+# Préparation Python avant Django  
+**Semaine intensive — 10 au 14 décembre 2025**
 
-Ce dépôt contient **7 petits exercices progressifs** (un par demi-journée) pour être 100 % prêt à commencer Django sans blocage.  
-Chaque exercice est **court** (30 à 90 minutes max), très ciblé et couvre exactement ce que tu utiliseras tous les jours dans Django (models, views, forms, templates, settings, etc.).
+Ce dépôt contient 7 exercices.  
+Chaque exercice contient exactement 2 mini-exercices très courts et précis à réaliser.  
+Règles Git obligatoires :  
+- Branche : ex1-les-bases, ex2-listes, …  
+- Fichiers clairement nommés  
+- Pull Request + merge + tag à la fin de chaque exercice
 
-### Règles Git obligatoires (très importantes pour l’habitude pro)
-Pour chaque exercice :
-1. Créer une branche : `ex1-les-bases`, `ex2-listes`, etc.
-2. Créer le fichier Python indiqué
-3. Commit + Push
-4. Ouvrir une Pull Request vers `main`
-5. Après merge → taguer : `git tag v1.0 && git push --tags`
+### ex1-les-bases  
+Branche : ex1-les-bases  
+Fichier : ex1_les_bases.py
 
----
+1. Demander un entier à l’utilisateur.  
+   → S’il est positif → afficher "positif"  
+   → S’il est négatif → afficher "négatif"  
+   → S’il est zéro → afficher "zéro"  
+   → Sinon (pas un nombre) → afficher "Ce n’est pas un nombre valide"
 
-## Planning détaillé
+2. Demander une note sur 20.  
+   → Si note ≥ 16 → "Très bien  
+   → 14-15 → Bien  
+   → 12-13 → Assez bien  
+   → 10-11 → Moyen  
+   → < 10 → Insuffisant
 
-### Mardi 10 décembre – Matin  
-**Exercice 1 – Les bases indispensables**  
-Branche : `ex1-les-bases`  
-Fichier : `ex1_les_bases.py`
+### ex2-boucles  
+Branche : ex2-boucles  
+Fichier : ex2_boucles.py
 
-Faire dans l’ordre :
-1. Demander un nombre et dire s’il est pair/impair/positif/négatif/zéro
-2. Demander l’âge → afficher "mineur", "majeur" ou "senior" (> 65 ans)
-3. Boucle while qui demande des nombres jusqu’à taper "stop" → afficher la somme et la moyenne
-4. Créer une fonction `dire_bonjour(prenom, age)` qui retourne une phrase complète
-5. Gestion d’erreur : si l’utilisateur tape autre chose qu’un nombre → message clair
+1. Avec une boucle while : demander des nombres jusqu’à taper "stop".  
+   À la fin afficher le nombre de valeurs saisies, la somme et la moyenne.
 
-### Mardi 10 décembre – Après-midi  
-**Exercice 2 – Listes, tuples dictionnaires**  
-Branche : `ex2-listes-dictionnaires`  
-Fichier : `ex2_listes_dictionnaires.py`
+2. Avec une boucle for : afficher la table de multiplication de 7 (7 × 1 = 7 … 7 × 10 = 70)
 
-1. Liste de courses → ajouter/supprimer/triez et affichez
-2. Créer 5 élèves sous forme de dictionnaires : `{"nom": "Lea, "age":22, "notes":[12, 15, 18]}`
-3. Fonction `moyenne_eleve(eleve)` et `moyenne_classe(liste_eleves)`
-4. Compréhension : créer une liste avec seulement les élèves ayant ≥ 12 de moyenne
-5. Bonus : sauvegarder la classe dans un fichier `classe.json` avec `json.dump`
+### ex3-fonctions  
+Branche : ex3-fonctions  
+Fichier : ex3_fonctions.py
 
-### Mercredi 11 décembre – Matin  
-**Exercice 3 – Fonctions avancées**  
-Branche : `ex3-fonctions-avancees`  
-Fichier : `ex3_fonctions.py`
+1. Créer une fonction est_pair(n) qui retourne True si n est pair, False sinon (sans if).
 
-1. Fonction `somme(*args)` qui additionne tous les nombres passés
-2. Fonction `creer_utilisateur(nom, age, **kwargs)` → retourne un dictionnaire complet
-3. Fonction `stats_nombres(liste)` qui retourne un tuple `(min, max, moyenne, somme)`
-4. Utiliser une lambda pour trier la liste d’élèves par moyenne décroissante
+2. Créer une fonction saluer(prenom, civilite="M.") qui retourne  
+   → "Bonjour M. Dupont" ou "Bonjour Mme Durand"
 
-### Mercredi 11 décembre – Après-midi  
-**Exercice 4 – Programmation Orientée Objet (POO)**  
-Branche : `ex4-poo`  
-Fichiers : `compte.py` et `ex4_demo.py`
+### ex4-listes-dictionnaires  
+Branche : ex4-listes-dictionnaires  
+Fichier : ex4_listes_dictionnaires.py
 
-Créer :
-```python
-class CompteBancaire:
-    def __init__(self, titulaire, solde=0)
-    def depot(self, montant)
-    def retrait(self, montant)          # interdit si solde insuffisant
-    def afficher(self)
-    
-class CompteEpargne(CompteBancaire):
-    def __init__(self, titulaire, solde=0, taux=0.03)
-    def appliquer_interets(self)
-Dans ex4_demo.py : créer 2 comptes, faire des opérations et afficher.
-Jeudi 12 décembre – Matin
-Exercice 5 – Fichiers texte JSON
-Branche : ex5-fichiers
-Fichier : ex5_journal_bancaire.py
+1. Créer une liste de 5 fruits.  
+   Ajouter un fruit avec input(), supprimer un fruit avec input(), afficher la liste triée.
 
-À chaque opération bancaire → écrire dans journal.txt :
-2025-12-12 14:23 | Dépôt de 150€ | Solde = 650€
-Fonction lire_journal() qui affiche tout l’historique
-Sauvegarder et charger les comptes en JSON (comptes.json)
+2. Créer une liste de 3 contacts :  
+   [{"nom": "Alice", "tel": "0601020304"}, …]  
+   Afficher uniquement les noms, puis rechercher un contact par nom.
 
-Jeudi 12 décembre – Après-midi
-Exercice 6 – Modules paquets import
-Branche : ex6-modules
-Structure à créer :
-textbanque/
-├── __init__.py
-├── compte.py
-├── compte_epargne.py
-└── operations.py
-ex6_menu.py
-Dans ex6_menu.py importer et faire un petit menu interactif :
+### ex5-poo  
+Branche : ex5-poo  
+Fichiers : voiture.py + ex5_demo.py
 
-Créer compte
-Déposer
-Retirer
-Voir solde
-Quitter
+1. Créer une classe Voiture avec attributs marque, modele, annee, kilometrage  
+   et méthode afficher() qui montre toutes les infos.
 
-Vendredi 13 décembre – Toute la journée
-Exercice 7 – Mini projet final (Boutique console)
-Branche : ex7-projet-boutique
-Créer une petite boutique complète :
+2. Créer une classe VoitureElectrique qui hérite de Voiture  
+   et ajoute un attribut autonomie + méthode afficher() qui montre aussi l’autonomie.
 
-Produits en stock (dictionnaire ou JSON)
-Panier utilisateur
-Ajouter/retirer du panier
-Calcul du total avec réduction 10 % si > 100 €
-Sauvegarder la facture dans facture_2025-12-13.txt
-Menu clair et propre
+### ex6-fichiers-exceptions  
+Branche : ex6-fichiers-exceptions  
+Fichier : ex6_journal.py
 
-Samedi 14 décembre
-Relecture de tout le code, correction des commentaires, ajout de docstrings, et préparation mentale : tu es prêt pour Django !
+1. Écrire 5 lignes dans un fichier notes.txt (une note par ligne).  
+   Puis relire le fichier et afficher uniquement les notes ≥ 10.
+
+2. Créer une fonction diviser(a, b) qui gère ZeroDivisionError  
+   et ValueError (si a ou b n’est pas un nombre) et retourne un message clair.
+
+### ex7-projet-final  
+Branche : ex7-projet-final  
+Fichiers libres (peu importe le nombre)
+
+Créer une petite application console « Todo List » qui permet de :
+1. Ajouter une tâche
+2. Voir toutes les tâches
+3. Marquer une tâche comme terminée
+4. Sauvegarder/quitter → les tâches sont enregistrées dans un fichier todos.json  
+   et rechargées au démarrage
+
+Quand les 7 exercices (14 mini-exercices + le projet) sont terminés et mergés, tu es 100 % prêt pour Django !
+
+Bonne semaine et bon code !
