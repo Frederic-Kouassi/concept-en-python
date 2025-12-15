@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Todo List</title>
+</head>
+
+<body class="bg-gray-100 p-10">
+
+    <h1 class="text-3xl font-bold mb-8 text-center text-blue-700"></h1>
+
+    
+    <div class="bg-white shadow-lg rounded-xl p-6 max-w-lg mx-auto">
+        <h2 class="text-2xl font-bold mb-5 text-blue-700 text-center">Liste des tâches</h2>
+
+       
+        <form id="todo-form" class="flex space-x-2 mb-5">
+            <input type="text" id="input" placeholder="Ajouter une tâche"
+                class="border border-gray-300 p-3 rounded w-full focus:ring-2 focus:ring-blue-400" required>
+
+            <button type="submit"
+                class="bg-blue-500 text-white px-4 rounded hover:bg-blue-600 transition duration-200">
+                Ajouter
+            </button>
+        </form>
+
+        
+        <ul id="ajouter" class="space-y-3"></ul>
+    </div>
+
+   
+    <script>
+        const listEl = document.getElementById('ajouter');
+        const formEl = document.getElementById('todo-form');
+        const inputEl = document.getElementById('input');
+
+        
+        let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+        
+        todos.forEach(todo => renderTodoItem(todo));
+
+        
+        formEl.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            const newTodo = { id: Date.now(), text };
+            todos.push(newTodo);
+
+            saveTodos();
+            renderTodoItem(newTodo);
+
+            inputEl.value = "";
+        });
+
+        
+        function renderTodoItem(todo) {
+            const li = document.createElement("li");
+            li.className = "flex justify-between items-center p-3 bg-gray-50 border border-gray-300 rounded shadow-sm";
+
+            li.innerHTML = `
+                <span class="text-gray-800 cursor-pointer">${todo.text}</span>
+                <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition"
+                        data-id="${todo.id}">
+                    Supprimer
+                </button>
+            `;
+
+           
+            li.querySelector("span").addEventListener("click", function () {
+                this.classList.toggle("line-through");
+            });
+
+            
+            li.querySelector("button").addEventListener("click", function () {
+                const id = parseInt(this.dataset.id);
+                const confirmer = confirm("Voulez-vous vraiment supprimer cette tâche ?");
+                if (!confirmer) return;
+
+                todos = todos.filter(t => t.id !== id);
+                saveTodos();
+                li.remove();
+            });
+
+            listEl.appendChild(li);
+        }
+
+        function saveTodos() {
+            localStorage.setItem("todos", JSON.stringify(todos));
+        }
+    </script>
+
+</body>
+</html>
